@@ -2,24 +2,28 @@
 
 {% block content %}
 
-<h1 class = 'blog_entry'>{{title}}</h1>
 
-<br/>
-<br/>
+<h1>new post</h1>
 
-<form method = 'POST' action = '/add_blog'>
-	<p>Title for your new blog</p>
-	<input name='blog_title' type='text'>
-	<p><i>{{title_error}}</i></p>
+<form action='/newpost', method="post">
+    <label>
+        <div>Title for Your New Post</div>
+        <input type="text" name="blog_title" value="{{blog_title}}">
+    </label>
+    <br/>
+    <span class="error" name='blog_title'>{{ title_error }}</span></p>
 
-	<br/>
-	<br/>
-		
-	<p>Your new Blog</p>
-	<textarea name= 'blog_content' rows= '6' cols= '30'></textarea>
-	<p><i>{{newBlog_error}}</i></p>
-
-	<input type ='submit' value = 'Add'>
+    <label>
+        <div>Your New Post</div>
+        <textarea type="text" name="blog_content" value="{{blog_content}}"></textarea>
+    </label>
+    <div class="error"></div>
+	<input type="submit", value='New Post'>
+    <br/>
+    <span class="error" name='blog_content'>{{ newBlog_error }}</span></p>
+    
 </form>
+
+
 
 {% endblock %}

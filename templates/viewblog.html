@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav>
+        <h1 style="text-align: center;">View Post</h1>
+        <hr/>
+        <p id='user-account'></p>   
+            <h1 class='user-title'>{{blog_id.title}}</h1>
+            <p class='user-body'>{{blog_id.content}}</p>
+            <p class="post-author">Written by <a href="/blog?user={{blog_id.owner_id}}">{{blog_id.owner.username}}</a></p>
+            <hr/>
+    
+        </ul>
+</nav>
+
+{% endblock %} 

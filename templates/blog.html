@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h1 class = 'blog_entry'>{{title}}</h1>
-
-{% for post in posts %}
-	<br/>
-	<a href = "/blog?id={{post.id}}"><h2>{{post.title}}</h2></a>
-	<br/>
-	<p>{{post.content}}</p>
+	<nav>
+	<h1 style="text-align: center">All User Blog Posts</h1>
 	<hr/>
-{% endfor %}
 
+	{% if blogs | length == 0 %}
+		<p>No posts yet</p>
+	{% else %}
+
+		{% for blog in blogs %}
+			
+			<h1><a class='user-title' href="blog?id={{blog.id}}">{{blog.title}}</a></h1>
+			<p class="user-body" >{{ blog.content}}</p>
+			<i><p class="post-author">Written by <a href="blog?user={{ blog.owner_id}}">{{ blog.owner.username }}</a></i> on {{ blog.date }}</p>
+			
+		{% endfor %}
+	
+	{% endif %}
+	</nav>
 
 {% endblock %}
 

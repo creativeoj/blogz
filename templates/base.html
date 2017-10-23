@@ -1,30 +1,127 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title></title>
-		<style>
-			.error {
-				color: red;
-			}
-			.blog_entry { 
-				
-				text-align: center;
-			}
 
-		</style>
-	</head>
 
-	<body>
-		<nav>
-			<a href = '/blog'>Main Blog Page</a>  
-			&nbsp;&nbsp;&nbsp;&nbsp;<a href = '/newpost'>Add a Blog Entry</a>
-		</nav>
+	<title>{{title}}</title>
+	<style type="text/css">
+		.error {
+			color: red;
+		}
 
-		<br/>
-		<br/>
+		.flashes {
+			color: red;
+		}
 
-		{% block content %}
-		{% endblock %}
+
+		body {
+			font-family: sans-serif;
+			width: 800px;
+			margin: 0 auto;
+			padding: 10px;
+		}
+
+		.error {
+			color: red;
+		}
+
+		label {
+			display: block;
+			font-size: 20px;
+		}
+
+		input[type=text],
+		input[type=password] {
+			width: 400px;
+			font-size: 20px;
+			padding: 2px;
+		}
+
+		textarea {
+			width: 400px;
+			height: 200px;
+			font-size: 17px;
+			font-family: monospace;
+		}
+
+		input[type=submit] {
+			font-size: 24px;
+		}
+
+		hr {
+			margin: 20px auto;
+		}
+
+		.blog+.blog {
+			margin-top: 20px;
+		}
+
+		.blog_title {
+			font-weight: bold;
+			font-size: 17px;
+		}
+
+		.blog_content{
+			margin: 0;
+			font-size: 15px;
+		}
+
+		.post-author {
+			font-style: italic;
+			font-size: 12px;
+		}
+
+		nav ul {
+			padding: 0;
+			display: inline-block;
+		}
 		
-	</body>
-</html>
+		nav ul li {
+			list-style: none;
+			display: inline-block;
+			margin-right: 15px;
+		}
+
+		nav #user-account {
+			float: right;
+		}
+
+	</style>
+
+			<html>
+					<head>
+						<title>Blogz</title>
+						
+					<body>
+						<nav>
+							<ul id="user-account">
+								<li><a href="/login">login</a></li>
+								<li><a href="/logout">logout</a></li>
+							</ul>
+							<ul>
+								<li><a href="/">home</a></li>
+								<li><a href="/blog">all posts</a></li>
+								<li><a href="/newpost" >new post</a></li>
+								
+							</ul>
+						</nav>
+						
+
+					</head>
+					{% if error %} <p class='error'>{{ error }}</p> {% endif %}
+					{% with messages = get_flashed_messages(with_categories=True) %}
+					{% if messages %}
+					<ul class=flashes>
+						{% for category,message in messages %}
+							<li class="{{ category }}">{{ message }}</li>
+						{% endfor %}
+					</ul>
+					{% endif%}
+					{% endwith %}
+					
+				
+				{% block content %}
+				{% endblock %}
+					</body>
+					
+			</html>
+
